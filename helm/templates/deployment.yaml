@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app: sovereign-core
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: sovereign-core
+  template:
+    metadata:
+      labels:
+        app: sovereign-core
+    spec:
+      containers:
+        # Gateway Microservice Container
+        - name: gateway
+          image: "{{ .Values.image.gateway.repository }}:{{ .Values.image.gateway.tag }}"
+          imagePullPolicy: {{ .Values.image.gateway.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.gatewayPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+        # OPA Engine Sidecar Container
+        - name: opa-sidecar
+          image: "{{ .Values.image.opa.repository }}:{{ .Values.image.opa.tag }}"
+          imagePullPolicy: {{ .Values.image.opa.pullPolicy }}
+          command: ["run", "--server", "--addr=localhost:8181"]
+          ports:
+            - containerPort: {{ .Values.service.opaPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

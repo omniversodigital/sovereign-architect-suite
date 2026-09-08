@@ -1,0 +1,14 @@
+apiVersion: v2
+name: sovereign-mesh
+description: Enterprise Helm chart for Sovereign OPA Policy Engine, Redis Telemetry, and Microservice Gateway
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - opa
+  - policy-engine
+  - autonomous-systems
+  - microservices
+maintainers:
+  - name: Jean Carlo Ferreira
+    email: jeancarlof@gmail.com

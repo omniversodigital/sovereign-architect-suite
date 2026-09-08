@@ -1,0 +1,68 @@
+name: Sovereign Deep-Tech CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-policies:
+    name: OPA Policy Engine & Security Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Open Policy Agent (OPA)
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: 'v1.20.2'
+
+      - name: Execute Rego Policy Test Suite
+        run: |
+          opa test policy_engine -v
+
+      - name: Benchmark Sub-Millisecond Policy Evaluation
+        run: |
+          opa bench -d policy_engine/authz.rego "data.system.authz.allow"
+
+  validate-services:
+    name: Microservices, Algorithmic Engine & Swarm Consensus
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Runtime Dependencies
+        run: |
+          pip install fastapi pydantic uvicorn pytest
+
+      - name: Execute Fintech Risk Governor & Order Engine
+        run: |
+          python fintech_algo/order_engine.py
+
+      - name: Execute Autonomous UAV Swarm Consensus Tests
+        run: |
+          python autonomous_uav/swarm_consensus.py
+
+  validate-infrastructure:
+    name: Helm & Kubernetes Topology Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: 'v4.2.4'
+
+      - name: Lint Helm Chart
+        run: |
+          helm lint helm/
