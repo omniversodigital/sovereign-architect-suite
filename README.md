@@ -1,6 +1,14 @@
-# Sovereign Architect Deep-Tech Suite
+# 🛸 Sovereign Architect Deep-Tech Suite
+### Distributed Systems Architecture, OPA Zero-Trust Policies, UAV Swarms & Fintech Risk Engines
 
-**Production-grade architectural framework for mission-critical distributed systems, real-time deterministic policy engines, autonomous UAV swarms, and algorithmic trading.**
+[![Open Policy Agent](https://img.shields.io/badge/OPA-Rego_Zero--Trust-7D57C1?logo=openpolicyagent&logoColor=white)](https://www.openpolicyagent.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Sub--ms_Gateway-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://python.org)
+[![Docker](https://img.shields.io/badge/Docker-Mesh_Ready-2496ed?logo=docker&logoColor=white)](https://docker.com)
+[![Throughput](https://img.shields.io/badge/Throughput-19.9µs/op-00e676?style=flat)](https://github.com/omniversodigital/sovereign-architect-suite)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+**Production-grade architectural framework for mission-critical distributed systems, real-time deterministic policy engines, autonomous UAV swarms, and algorithmic trading.** Engineered by **Omniverso Digital**.
 
 ---
 
